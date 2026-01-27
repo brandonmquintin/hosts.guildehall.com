@@ -1,0 +1,293 @@
+/* GuildeHall - 37signals-inspired accordion design */
+
+:root {
+  --color-text: #fffafa;
+  --color-bg: #c04657;
+  --color-text-muted: rgba(255, 250, 250, 0.4375);
+  --font-size: calc(1.25em + 1vw);
+  --line-height: 1.3em;
+  --spacing: 0.75em;
+  --transition: 0.2s ease;
+  --letter-spacing: -0.01em;
+}
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  letter-spacing: var(--letter-spacing);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Header with logo */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2);
+  pointer-events: none;
+}
+
+.logo {
+  pointer-events: auto;
+  color: #ffffff;
+  text-decoration: none;
+  transition: opacity var(--transition);
+}
+
+.logo:hover {
+  opacity: 0.7;
+}
+
+.logo svg {
+  height: 1.05em;
+  width: auto;
+  display: block;
+}
+
+/* Main content area */
+.signals {
+  padding: calc(var(--spacing) * 6) calc(var(--spacing) * 1.5) calc(var(--spacing) * 6);
+  max-width: 100%;
+  min-height: 100vh;
+}
+
+/* Individual sections - accordion style */
+.signal {
+  position: relative;
+}
+
+/* Section header (clickable link) */
+.signal__header {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.signal__header h2 {
+  font-size: 1em;
+  font-weight: 700;
+  line-height: var(--line-height);
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.3em;
+  transition: opacity var(--transition);
+}
+
+.signal__header h2 span {
+  font-weight: 700;
+  color: var(--color-text-muted);
+  transition: opacity var(--transition);
+}
+
+.signal__header h2 strong {
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+/* Active section - full opacity for number and show title */
+.signal.active .signal__header h2 span {
+  opacity: 1 !important;
+  color: var(--color-text);
+}
+
+.signal.active .signal__header h2 strong {
+  opacity: 1;
+}
+
+/* Hover on inactive sections - show title */
+.signal:not(.active):hover .signal__header h2 strong {
+  opacity: 1;
+}
+
+/* Content area - hidden by default */
+.signal__content {
+  margin-left: 2.8ch;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease, margin 0.3s ease;
+}
+
+/* Active section - show content */
+.signal.active .signal__content {
+  max-height: 2000px;
+  opacity: 1;
+  margin-top: 0.25em;
+  margin-bottom: 1em;
+}
+
+.signal__content p {
+  font-size: 0.85em;
+  font-weight: 400;
+  line-height: var(--line-height);
+  margin: 0 0 0.75em 0;
+}
+
+.signal__content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Links in content */
+.signal__content a {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  transition: opacity var(--transition);
+}
+
+.signal__content a:hover {
+  opacity: 0.7;
+}
+
+/* Lists */
+.signal__content ul {
+  margin: 0 0 0.75em 0;
+  padding-left: 1.5em;
+  list-style-type: disc;
+}
+
+.signal__content ul li {
+  font-size: 0.85em;
+  margin-bottom: 0.25em;
+  line-height: var(--line-height);
+}
+
+.signal__content ul li:last-child {
+  margin-bottom: 0;
+}
+
+/* Subheadings in section 08 */
+.signal__content h3 {
+  font-size: 0.85em;
+  font-weight: 400;
+  font-style: italic;
+  line-height: var(--line-height);
+  margin: 1.5em 0 0.25em 0;
+}
+
+.signal__content h3:first-child {
+  margin-top: 0;
+}
+
+/* Circular navigation button */
+.nav-next {
+  position: fixed;
+  bottom: calc(var(--spacing) * 2);
+  right: calc(var(--spacing) * 2);
+  z-index: 100;
+}
+
+.nav-next button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc((var(--line-height) + var(--spacing)) * 2);
+  height: calc((var(--line-height) + var(--spacing)) * 2);
+  border: none;
+  border-radius: 100%;
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  cursor: pointer;
+  transition: transform var(--transition), opacity var(--transition), box-shadow var(--transition);
+  box-shadow: 0 0 1em 0.1em rgba(192, 70, 87, 0.4);
+}
+
+.nav-next button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 1.3em 0.2em rgba(192, 70, 87, 0.5);
+}
+
+.nav-next button:active {
+  transform: scale(0.98);
+}
+
+.nav-next button svg {
+  width: 50%;
+  height: 50%;
+}
+
+/* Hide button when at the last section */
+.nav-next.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  :root {
+    --font-size: calc(1em + 1vw);
+  }
+
+  .signals {
+    padding: calc(var(--spacing) * 4) var(--spacing) calc(var(--spacing) * 4);
+  }
+
+  .signal__content {
+    margin-left: 0;
+  }
+
+  .signal.active .signal__content {
+    margin-top: 0.5em;
+  }
+
+  .signal__header h2 {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --font-size: calc(1.25em + 0.5vw);
+  }
+
+  .signals {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+}
+
+/* Print styles */
+@media print {
+  .header,
+  .nav-next {
+    display: none;
+  }
+
+  .signals {
+    padding: 0;
+  }
+
+  .signal__content {
+    max-height: none;
+    opacity: 1;
+  }
+
+  .signal__header h2 strong {
+    opacity: 1;
+  }
+}
