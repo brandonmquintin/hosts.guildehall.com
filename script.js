@@ -21,10 +21,11 @@
     return 0; // Default to first section
   }
 
-  // Update opacity fade for section numbers based on distance from active
+  // Update opacity fade for section numbers and titles based on distance from active
   function updateSectionFade(activeIndex) {
     sections.forEach((section, index) => {
       const numberSpan = section.querySelector('.signal__header h2 span');
+      const titleStrong = section.querySelector('.signal__header h2 strong');
       if (!numberSpan) return;
 
       // Calculate distance from active section
@@ -34,6 +35,7 @@
       // Active section is handled by CSS (.active class)
       if (index === activeIndex) {
         numberSpan.style.opacity = '';
+        if (titleStrong) titleStrong.style.opacity = '';
       } else {
         // Fade out progressively: each step away reduces opacity
         // Start at 0.4375 (base muted), fade further with distance
@@ -41,6 +43,7 @@
         const fadePerStep = 0.08;
         const opacity = Math.max(0.15, baseOpacity - (distance * fadePerStep));
         numberSpan.style.opacity = opacity;
+        if (titleStrong) titleStrong.style.opacity = opacity;
       }
     });
   }
