@@ -158,6 +158,17 @@ body {
   opacity: 0.7;
 }
 
+/* Inline GuildeHall brand links */
+.signal__content a.gh-link {
+  opacity: 0.85;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.signal__content a.gh-link:hover {
+  opacity: 1;
+}
+
 /* Lists */
 .signal__content ul {
   margin: 0 0 0.75em 0;
