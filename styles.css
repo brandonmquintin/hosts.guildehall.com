@@ -36,19 +36,14 @@ body {
 
 /* Header with logo */
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2);
-  pointer-events: none;
+  display: contents;
 }
 
 .logo {
+  position: fixed;
+  top: calc(var(--spacing) * 1.5);
+  right: calc(var(--spacing) * 2);
+  z-index: 1000;
   pointer-events: auto;
   color: #ffffff;
   text-decoration: none;
