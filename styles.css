@@ -2,7 +2,7 @@
 
 :root {
   --color-text: #fffafa;
-  --color-bg: #c04657;
+  --color-bg: #66023c;
   --color-text-muted: rgba(255, 250, 250, 0.4375);
   --font-size: calc(1.25em + 1vw);
   --line-height: 1.3em;
@@ -217,12 +217,12 @@ body {
   color: var(--color-bg);
   cursor: pointer;
   transition: transform var(--transition), opacity var(--transition), box-shadow var(--transition);
-  box-shadow: 0 0 1em 0.1em rgba(192, 70, 87, 0.4);
+  box-shadow: 0 0 1em 0.1em rgba(102, 2, 60, 0.4);
 }
 
 .nav-next button:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 1.3em 0.2em rgba(192, 70, 87, 0.5);
+  box-shadow: 0 0 1.3em 0.2em rgba(102, 2, 60, 0.5);
 }
 
 .nav-next button:active {
