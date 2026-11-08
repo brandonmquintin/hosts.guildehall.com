@@ -167,24 +167,31 @@ body {
 }
 
 /* Lists */
-.signal__content ul {
+.signal__content ul,
+.signal__content ol {
   margin: 0 0 0.75em 0;
   padding-left: 1.5em;
   list-style-type: disc;
 }
 
-.signal__content ul li {
+.signal__content ol {
+  list-style-type: decimal;
+}
+
+.signal__content ul li,
+.signal__content ol li {
   font-size: 0.85em;
   font-weight: 300;
   margin-bottom: 0.25em;
   line-height: var(--line-height);
 }
 
-.signal__content ul li:last-child {
+.signal__content ul li:last-child,
+.signal__content ol li:last-child {
   margin-bottom: 0;
 }
 
-/* Subheadings in section 08 */
+/* Subheadings */
 .signal__content h3 {
   font-size: 0.85em;
   font-weight: 300;
